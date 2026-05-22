@@ -20,6 +20,6 @@ jobs:
         env:
           BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_1 }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_1 }}
-          QUOTE_FILE: 'quotes_caftsiel.txt' # 본인이 만든 캐릭터 대사 파일명으로 적으세요!
+          QUOTE_FILE: 'quotes_caftsiel.txt'
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # 👈 경고 해결: 최신 노드 강제 활성화
         run: npm start
