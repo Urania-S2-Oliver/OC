@@ -21,7 +21,7 @@ jobs:
       
       - name: Run Bot
         env:
-          BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_1 }}
+          BSKY_HANDLE: ${{ secrets.BSKY_USERNAME_1 }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_1 }}
           QUOTE_FILE: 'quotes_caftsiel.txt' # 👈 작성하신 파일명 반영 완료!
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
