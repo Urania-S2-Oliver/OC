@@ -2,8 +2,8 @@ name: caftsiel
 
 on:
   schedule:
-    - cron: '0 0/3 * * *' # 매 시간마다 실행 (원하는 주기로 변경 가능)
-  workflow_dispatch: # 수동 실행 버튼 활성화
+    - cron: '0 0/2 * * *'
+  workflow_dispatch: # 수동 실행 버튼
 
 jobs:
   post:
@@ -12,13 +12,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24' # 👈 경고 해결: Node 버전을 24로 올립니다.
+      
       - run: npm ci
       
-      # 💡 이 영역에 환경 변수를 매핑합니다
       - name: Run Bot
         env:
           BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_1 }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_1 }}
-          QUOTE_FILE: 'quotes_caftsiel.txt' # 👈 읽어올 파일명을 여기에 명시!
+          QUOTE_FILE: 'quotes_bot1.txt' # 본인이 만든 캐릭터 대사 파일명으로 적으세요!
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # 👈 경고 해결: 최신 노드 강제 활성화
         run: npm start
