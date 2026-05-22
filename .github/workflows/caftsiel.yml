@@ -1,1 +1,24 @@
-asdf
+name: caftsiel
+
+on:
+  schedule:
+    - cron: '0 0/3 * * *' # 매 시간마다 실행 (원하는 주기로 변경 가능)
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      
+      # 💡 이 영역에 환경 변수를 매핑합니다
+      - name: Run Bot
+        env:
+          BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_1 }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_1 }}
+          QUOTE_FILE: 'quotes_caftsiel.txt' # 👈 읽어올 파일명을 여기에 명시!
+        run: npm start
