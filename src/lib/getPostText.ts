@@ -3,7 +3,7 @@ import path from 'path';
 
 export default async function getPostText(): Promise<string> {
   // 1. YAML 파일에서 지정한 QUOTE_FILE 이름을 가져옵니다 (기본값: quotes.txt)
-  const fileName = process.env.QUOTE_FILE || 'quotes.txt';
+  const fileName = process.env.QUOTE_FILE || 'caftsiel.txt';
   const filePath = path.join(process.cwd(), fileName);
 
   try {
