@@ -1,8 +1,8 @@
-name: caftsiel
+name: Caftsiel Annie Maunder # 👈 자유롭게 바꾼 캐릭터 이름
 
 on:
   schedule:
-    - cron: '0 0/2 * * *'
+    - cron: '0 0/3 * * *' # 3시간마다 실행
   workflow_dispatch: # 수동 실행 버튼
 
 jobs:
@@ -12,14 +12,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24' # 👈 경고 해결: Node 버전을 24로 올립니다.
+          node-version: '24'
       
       - run: npm ci
+      
+      # 💡 [필수 추가] TypeScript 코드를 Node.js가 읽을 수 있는 파일로 변환합니다.
+      - run: npm run build
       
       - name: Run Bot
         env:
           BSKY_USERNAME: ${{ secrets.BSKY_USERNAME_1 }}
           BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_1 }}
-          QUOTE_FILE: 'quotes_caftsiel.txt'
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # 👈 경고 해결: 최신 노드 강제 활성화
+          QUOTE_FILE: 'quotes_caftsiel.txt' # 👈 작성하신 파일명 반영 완료!
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
         run: npm start
