@@ -1,0 +1,28 @@
+name: Azrael James Rainwater # 👈 자유롭게 바꾼 캐릭터 이름
+
+on:
+  schedule:
+    - cron: '13 0/2 * * *'
+  workflow_dispatch: # 수동 실행 버튼
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      
+      - run: npm ci
+      
+      # 💡 [필수 추가] TypeScript 코드를 Node.js가 읽을 수 있는 파일로 변환합니다.
+      - run: npm run build
+      
+      - name: Run Bot
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_USERNAME_3 }}
+          BSKY_PASSWORD: ${{ secrets.BSKY_PASSWORD_3 }}
+          QUOTE_FILE: 'quotes_azrael.txt' # 👈 작성하신 파일명 반영 완료!
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+        run: npm start
