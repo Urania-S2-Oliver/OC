@@ -2,7 +2,7 @@ name: Azrael James Rainwater # 👈 자유롭게 바꾼 캐릭터 이름
 
 on:
   schedule:
-    - cron: '13 0/2 * * *'
+    - cron: '13 0/6 * * *'
   workflow_dispatch: # 수동 실행 버튼
 
 jobs:
